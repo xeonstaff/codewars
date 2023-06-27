@@ -4,7 +4,7 @@
 function cleanString(s) {
     let cleaned = []
     s.split('').forEach((char)=>{
-        char === '#' && cleaned.length ? cleaned.pop():cleaned.push(char)
+        char === '#' ? cleaned.length ? cleaned.pop():null:cleaned.push(char)
     })
     return cleaned.join('')
 
