@@ -1,0 +1,55 @@
+//a simple pseudo-encryption that concatenates even & odd
+//characters in a string together (even+odd), repeating n times
+//alongside its corresponding decryption algo
+
+function encrypt(text, n) {
+    if(n<=0 || !text) return text
+    let evens, odds
+    while(n>0){
+        text = text.split('')
+        evens = text.reduce((odds,n,i)=>i%2===1 ? odds+n : odds,'')
+        odds = text.reduce((evens,n,i)=>i%2==0 ? evens+n : evens,'')
+        text = (evens+odds)
+        n-=1
+    }
+    return text
+}
+
+function decrypt(text, n) {
+    if(n<=0) return text
+    let decryptedstring = ''
+    while(n>0){
+        decryptedstring = ''
+        let half1 = text.substring(text.length/2)
+        let half2 = text.substring(0,text.length/2)
+        const length = half1.length > half2.length ? half1.length: half2.length
+        for(i=0; i<length; i++){
+            let newstring = half1[i]? half2[i]?half1[i]+half2[i]:half1[i]:half2[i]
+            decryptedstring += newstring
+        }
+        text = decryptedstring
+        n-=1
+    }
+    return decryptedstring
+}
+
+
+//test cases - encrypt
+// 1  - should return ""hsi  etTi sats!""
+// console.log(encrypt("This is a test!", 1))
+
+// 2  - should return ""s eT ashi tist!""
+// console.log(encrypt("This is a test!", 2))
+
+// 3  - should return "hskt svr neetn!Ti aai eyitrsig"
+// console.log(encrypt("This kata is very interesting!", 1))
+
+//test cases - decrypt
+// 1  - should return ""This is a test!""
+// console.log(decrypt("hsi  etTi sats!", 1))
+
+// 2  - should return ""This is a test!""
+// console.log(decrypt("s eT ashi tist!", 2))
+
+// 3  - should return "This kata is very interesting!"
+// console.log(decrypt("hskt svr neetn!Ti aai eyitrsig", 1))
