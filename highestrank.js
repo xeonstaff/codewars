@@ -1,3 +1,6 @@
+//returns the most-common number in an array of numbers
+//and the highest-value most-common number if there's a tie
+
 function highestRank(arr){
     //count the numbers
     let numdict={}
@@ -17,3 +20,12 @@ function highestRank(arr){
 
     return Math.max(...highNums)   
 }
+
+console.log(highestRank([12,10,8,12,7,6,4,10,12,10]))
+
+//testcases
+//1 should return 12
+console.log(highestRank([12, 10, 8, 12, 7, 6, 4, 10, 12]))
+
+//2 should return 3
+console.log(highestRank([12, 10, 8, 8, 3, 3, 3, 3, 2, 4, 10, 12, 10]))
